@@ -37,6 +37,7 @@ export const createUser = async (req, res) => {
         res.redirect(`authors`, locals);
     }
     catch (err) {
+        console.log(err);
         let locals = 'Smth went wrong while u were creating author';
         res.render('authors/new', { author: author, errorMsg: locals}); // res.redirect(`authors/${newAuthor.id}`);
     }

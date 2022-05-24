@@ -12,6 +12,7 @@ import bodyParser from 'body-parser';
 
 import mainRouter from './routes/main.js';
 import authorRouter from './routes/authors.js';
+import bookRouter from './routes/books.js';
 
 const app = express(),
     port = 9000,
@@ -35,6 +36,7 @@ db.once('open', () => console.log('Connected to Mongoose'));
 
 app.use('/', mainRouter);
 app.use('/authors', authorRouter);
+app.use('/books', bookRouter);
 
 // authors/new
 
