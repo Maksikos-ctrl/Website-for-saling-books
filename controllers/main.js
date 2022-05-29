@@ -1,7 +1,13 @@
+import Book from '../models/book.js';
 
-
-export const getUser = (req, res) => {
-    res.render('index');
+export const getUser = async (req, res) => {
+    let books;
+    try {
+        books = await Book.find().sort({ createdAt: 'description' }).limit(10).exec();
+    } catch(err) {
+        books = [];
+    }
+    res.render('index', { books: books });
 };
 
 export const getUsers = (req, res) => {

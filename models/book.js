@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import path from 'path';
 
-import coverImgBasePath from 'uploads/booksCovers';
+// const coverImgBasePath = 'uploads/bookCovers';
 
 
 const bookSchema = new mongoose.Schema({
@@ -36,9 +37,13 @@ const bookSchema = new mongoose.Schema({
 });
 
 
-
+bookSchema.virtual('coverImgPath').get(function() {
+    if (this.coverImgTitle != null) {
+        return path.join('/uploads/bookCovers', this.coverImgTitle);
+    }
+});
 
 export default mongoose.model('Book', bookSchema); 
-
-module.exports.coverImgBasePath = coverImgBasePath;
+// export const coverImgPath = coverImgBasePath;
+// module.exports.coverImgBasePath = coverImgBasePath;
 // export coverImgBasePath =  coverImgBasePath;

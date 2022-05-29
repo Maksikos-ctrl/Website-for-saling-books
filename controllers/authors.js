@@ -10,7 +10,7 @@ export const getUsers = async (req, res) => {
         res.render('authors/index', { authors: authors, searchOpts: req.query});
     }
     catch (err) {
-        console.log(err); 
+        // console.log(err); 
         res.redirect('/'); // if smth goes wrong, we'll redirect to the main page
     }
     // res.render('authors/index');
@@ -31,13 +31,12 @@ export const createUser = async (req, res) => {
         name: req.body.name
     });
     try {
-        let locals = 'All is alright';
+        // let locals = 'All is alright';
         const newAuthor = await author.save(); // we're saving here our new received name of author
         // res.redirect(`authors/${newAuthor.id}`);
-        res.redirect(`authors`, locals);
+        res.redirect(`authors`);
     }
     catch (err) {
-        console.log(err);
         let locals = 'Smth went wrong while u were creating author';
         res.render('authors/new', { author: author, errorMsg: locals}); // res.redirect(`authors/${newAuthor.id}`);
     }
