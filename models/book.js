@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import path from 'path';
 
-// const coverImgBasePath = 'uploads/bookCovers';
 
 
 const bookSchema = new mongoose.Schema({
@@ -25,7 +23,11 @@ const bookSchema = new mongoose.Schema({
         required: true,
         default: Date.now()
     },
-    coverImgTitle: {
+    coverImg: {
+        type: Buffer,
+        required: true
+    },
+    coverImgType: {
         type: String,
         required: true
     },
@@ -38,8 +40,9 @@ const bookSchema = new mongoose.Schema({
 
 
 bookSchema.virtual('coverImgPath').get(function() {
-    if (this.coverImgTitle != null) {
-        return path.join('/uploads/bookCovers', this.coverImgTitle);
+    if (this.coverImg != null && this.coverImgType != null) {
+        return `data:${this.coverImgType};charset=utf-8;base64,${this.coverImg.toString('base64')}`; // base64 - converts a Buffer to a string, 
+       
     }
 });
 

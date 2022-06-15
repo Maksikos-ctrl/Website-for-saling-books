@@ -47,12 +47,23 @@ export const createUser = async (req, res) => {
     // });
     // res.send(req.body.name);
 };
+
+
+export const getId = (req, res) => {
+    res.send('Show Author ' + req.params.id);  
+};
+
+export const editUser = (req, res) => {
+    res.send('Edit Author ' + req.params.id);   
+};
+
+
 export const updateUser = (req, res) => {
-    
+    res.send('Update Author ' + req.params.id);
 };
 
 
 export const deleteUser = (req, res) => {
-    
+    res.send('Delete Author ' + req.params.id);
 };
 

@@ -1,4 +1,3 @@
-
 import * as FilePond from 'filepond';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
@@ -13,6 +12,8 @@ FilePond.registerPlugin(
 
 FilePond.setOptions({
     stylePanelAspectRatio: 150 / 100, 
+    imageResizeTargetWidth: 100,
+    imageResizeTargetHeight: 150
 });
 
 FilePond.parse(document.body);

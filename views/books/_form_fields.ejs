@@ -9,7 +9,7 @@
     <% authors.forEach(author => { %>
         <% if (author.id === book.author) { %>    
             <option selected label="<%= author.name %>" value="<%= author.id %>"></option>
-        <% } else { %>     
+        <% } else { %>    
             <option selected label="<%= author.name %>" value="<%= author.id %>"></option> 
         <% } %>     
     <% }) %> 

@@ -2,7 +2,7 @@ import Book from '../models/book.js';
 import Author from '../models/author.js';
 import fs from 'fs';
 import path from 'path';
-import { removeBookCover } from '../routes/books.js';
+// import { removeBookCover } from '../routes/books.js';
 
 
 export const getBooks = async (req, res) => {
@@ -55,18 +55,21 @@ export const createBook = async (req, res) => {
         author: req.body.author,
         publishDate: new Date(req.body.publishDate),
         pageCount: req.body.pageCount,
-        coverImageName: fileName,
         description: req.body.description
     });
+
+    saveCover(book, req.body.cover);
+
+
     try {
         const newBook = await book.save();
         // res.redirect(`books/${newBook.id}`);
         res.redirect(`books`);
     } catch(err) {
 
-        if (book.coverImageName != null) {
-            removeBookCover(book.coverImageName);
-        }
+        // if (book.coverImageName != null) {
+        //     removeBookCover(book.coverImageName);
+        // }
         // console.log(err);
         renderNewPage(res, book, true);
     }
@@ -87,6 +90,18 @@ async function renderNewPage(res, book, hasError = false) {
     } catch(err) {
         // console.log(err);
         res.redirect('/books');
+    }
+}
+
+function saveCover(book, coverEncoded) {
+    // coverEncoded == null ? coverEncoded = '' : coverEncoded = coverEncoded;
+    if (coverEncoded == null) {
+        return;
+    }
+    const cover = JSON.parse(coverEncoded); 
+    if (cover != null && imageMimeTypes.includes(cover.type)) {
+        book.coverImage = new Buffer.from(cover.data, 'base64'); // from() - creates a Buffer from a string or array of integers 
+        book.coverImageType = cover.type;
     }
 }
 

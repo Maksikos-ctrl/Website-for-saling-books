@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 import expressLayouts from 'express-ejs-layouts';
 import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
 
 import mainRouter from './routes/main.js';
 import authorRouter from './routes/authors.js';
@@ -22,6 +23,7 @@ const app = express(),
 app.set('view engine', 'ejs');  // ejs is a view engine
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
+app.use( methodOverride('_method')); // we need it for update and delete routes
 app.use(expressLayouts);
 app.use(express.static('public'));  // PUBLIC FOLDER(css and js)
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false })); 
