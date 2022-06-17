@@ -2,7 +2,7 @@ import Book from '../models/book.js';
 import Author from '../models/author.js';
 import fs from 'fs';
 import path from 'path';
-// import { removeBookCover } from '../routes/books.js';
+import imageMimeTypes from '../routes/books.js';
 
 
 export const getBooks = async (req, res) => {
@@ -63,8 +63,8 @@ export const createBook = async (req, res) => {
 
     try {
         const newBook = await book.save();
-        // res.redirect(`books/${newBook.id}`);
-        res.redirect(`books`);
+        res.redirect(`books/${newBook.id}`);
+     
     } catch(err) {
 
         // if (book.coverImageName != null) {

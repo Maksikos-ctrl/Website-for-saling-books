@@ -33,8 +33,7 @@ export const createUser = async (req, res) => {
     try {
         // let locals = 'All is alright';
         const newAuthor = await author.save(); // we're saving here our new received name of author
-        // res.redirect(`authors/${newAuthor.id}`);
-        res.redirect(`authors`);
+        res.redirect(`authors/${newAuthor.id}`);
     }
     catch (err) {
         let locals = 'Smth went wrong while u were creating author';
@@ -53,17 +52,42 @@ export const getId = (req, res) => {
     res.send('Show Author ' + req.params.id);  
 };
 
-export const editUser = (req, res) => {
-    res.send('Edit Author ' + req.params.id);   
+export const editUser = async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id); // find autor in mongoDb by id
+        res.render('authors/edit', { author: author });   
+    }
+    catch(err) {
+        res.redirect('/authors');
+    }
+ 
 };
 
 
-export const updateUser = (req, res) => {
-    res.send('Update Author ' + req.params.id);
+export const updateUser = async (req, res) => {
+    let author;
+    try {
+        author = await Author.findById(req.params.id);
+        author.name = req.body.name; // we're changing the name of given name from db before saving
+        await author.save(); // we're saving here our new received name of author
+        res.redirect(`/authors/${author.id}`);
+     }
+    catch (err) {
+        let locals = 'Error of Updating Author';
+        author == null ? res.redirect('/') : res.render('/authors/edit', { author: author, errorMsg: locals});
+    }
 };
 
 
-export const deleteUser = (req, res) => {
-    res.send('Delete Author ' + req.params.id);
+export const deleteUser = async (req, res) => {
+    let author;
+    try {
+        author = await Author.findById(req.params.id);
+        await author.remove(); 
+        res.redirect('/authors');
+     }
+    catch (err) {
+        author == null ? res.redirect('/') : res.redirect(`/authors/${author.id}`);
+    }
 };
 
