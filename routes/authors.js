@@ -5,6 +5,8 @@ import { createUser, getUsers, getUser, deleteUser, updateUser,  newUser, getId,
 
 const router = express.Router();
 
+// Author route
+
 // All Authors Route
 router.get('/', getUsers);
 

@@ -1,4 +1,5 @@
 import Author from '../models/author.js';
+import Book from '../models/book.js';
 
 export const getUsers = async (req, res) => {
     let searchOpts = {};
@@ -48,8 +49,16 @@ export const createUser = async (req, res) => {
 };
 
 
-export const getId = (req, res) => {
-    res.send('Show Author ' + req.params.id);  
+export const getId = async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id),
+            books = await Book.find({ author: author.id }).limit(6).exec();
+        res.render(`authors/show`, { author: author, booksByAuthor: books});    
+    } catch(err) {
+        console.log(err);
+        res.redirect('/');
+    }
+
 };
 
 export const editUser = async (req, res) => {
@@ -70,8 +79,8 @@ export const updateUser = async (req, res) => {
         author = await Author.findById(req.params.id);
         author.name = req.body.name; // we're changing the name of given name from db before saving
         await author.save(); // we're saving here our new received name of author
-        res.redirect(`/authors/${author.id}`);
-     }
+        res.redirect(`/authors`);
+    }
     catch (err) {
         let locals = 'Error of Updating Author';
         author == null ? res.redirect('/') : res.render('/authors/edit', { author: author, errorMsg: locals});

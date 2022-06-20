@@ -13,10 +13,10 @@ The __dirname variable stores the directory name of the current module. */
 
 import { createBook, getBooks, getBook, deleteBook, updateBook,  newBook } from '../controllers/books.js';
 
-const coverImgPath = 'uploads/bookCovers';
+const coverImagePath = 'uploads/bookCovers';
 
 
-const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
    // uploadPath = path.join('public', Book.coverImgPath),
   
 // const __filename = fileURLToPath(import.meta.url),

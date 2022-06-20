@@ -23,11 +23,11 @@ const bookSchema = new mongoose.Schema({
         required: true,
         default: Date.now()
     },
-    coverImg: {
+    coverImage: {
         type: Buffer,
         required: true
     },
-    coverImgType: {
+    coverImageType: {
         type: String,
         required: true
     },
@@ -39,9 +39,9 @@ const bookSchema = new mongoose.Schema({
 });
 
 
-bookSchema.virtual('coverImgPath').get(function() {
-    if (this.coverImg != null && this.coverImgType != null) {
-        return `data:${this.coverImgType};charset=utf-8;base64,${this.coverImg.toString('base64')}`; // base64 - converts a Buffer to a string, 
+bookSchema.virtual('coverImagePath').get(function() {
+    if (this.coverImage != null && this.coverImageType != null) {
+        return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`; // base64 - converts a Buffer to a string, 
        
     }
 });
