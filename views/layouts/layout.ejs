@@ -15,6 +15,7 @@
 
     <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script defer type="module" src="/javascripts/fileUpload.js"></script>
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <!-- <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         @layer utilities {
@@ -38,11 +39,14 @@
     <title>My books Library</title>
 </head>
 <body>
-    <br>
+  <div class="container">
+ 
     <%- include('../partials/header.ejs') %>
-    <%- include('../partials/errorMsg.ejs') %>
-  
-    <%- body %>
-    <br>
+    <div class="inner-container">
+      <%- include('../partials/errorMsg.ejs') %>
+    
+      <%- body %>
+    </div>  
+  </div>  
 </body>
 </html>

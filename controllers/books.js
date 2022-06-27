@@ -2,8 +2,10 @@ import Book from '../models/book.js';
 import Author from '../models/author.js';
 import fs from 'fs';
 import path from 'path';
-import imageMimeTypes from '../routes/books.js';
 
+
+
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
 
 export const getBooks = async (req, res) => {
    let query = Book.find();
@@ -44,8 +46,14 @@ export const newBook = async (req, res) => {
 
 
 
-export const getBook = (req, res) => {
-    
+export const getBook = async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id).populate('author').exec(); // populate() - for displaying author name
+        res.render('books/show', { book: book});
+    }
+    catch(err) {
+        res.redirect('/');
+    }
 };
 
 export const createBook = async (req, res) => {
@@ -79,18 +87,7 @@ export const createBook = async (req, res) => {
 
 
 async function renderNewPage(res, book, hasError = false) {
-    try {
-        const authors = await Author.find({}),
-            params =  { authors: authors, book: book };
-        if (hasError) {
-            params.errorMessage = 'Error Creating Book'; 
-        }    
-        // hasError ? params.errorMsg = 'Error creating new book' : params.successMsg = 'New book created';    
-        res.render('books/new', params);
-    } catch(err) {
-        // console.log(err);
-        res.redirect('/');
-    }
+    renderFormPage(res, book, 'new', hasError);
 }
 
 function saveCover(book, coverEncoded) {
@@ -106,12 +103,73 @@ function saveCover(book, coverEncoded) {
 }
 
 
+async function renderEditPage(res, book, hasError = false) {
+   renderFormPage(res, book, 'edit', hasError);
+}
 
-export const updateBook = (req, res) => {
+async function renderFormPage(res, book, form,  hasError = false) {
+    try {
+        const authors = await Author.find({}),
+            params =  { authors: authors, book: book };
+        
+        if (hasError) {
+             (form === 'edit') ? params.errorMessage = 'Error Editing Book' : params.errorMessage = 'Error creating book';
+        }     
+        
+        // hasError ? params.errorMsg = 'Error creating new book' : params.successMsg = 'New book created';    
+        res.render(`books/${form}`, params);
+    } catch(err) {
+        // console.log(err);
+        res.redirect('/');
+    }
+}
+
+
+
+
+export const editBook = async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        renderEditPage(req, book);
+    }
+    catch(err) {
+        res.redirect('/');
+    }
     
 };
 
+export const updateBook = async (req, res) => {
+    let book;
 
-export const deleteBook = (req, res) => {
-    
+    try {
+        book = await Book.findById(req.params.id);
+        book.title = req.body.title;
+        book.author = req.body.authorId;
+        book.publishDate = new Date(req.body.publishDate);
+        book.pageCount = req.body.pageCount;
+        book.description = req.body.description;
+        if (req.body.cover != null && req.body.cover != '') {
+            saveCover(book, req.body.cover);
+        }
+
+        await book.save();
+        res.redirect(`/books/${book.id}`);
+    }
+    catch(err) {
+        console.log(err);
+        book != null ? renderEditPage(res, book, true) : res.redirect('/');
+    }
+};
+
+
+export const deleteBook = async (req, res) => {
+    let book;
+    try {
+        book = await Book.findById(req.params.id);
+        await book.remove();
+        res.redirect('/books');
+    }
+    catch(err) {
+        book != null ? res.render('book/show', { book: book, errorMessage: 'Could not remove the current book' }) : res.redirect('/');
+    }
 };

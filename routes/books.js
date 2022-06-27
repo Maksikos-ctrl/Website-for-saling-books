@@ -11,12 +11,12 @@ const router = express.Router();
 
 The __dirname variable stores the directory name of the current module. */
 
-import { createBook, getBooks, getBook, deleteBook, updateBook,  newBook } from '../controllers/books.js';
+import { createBook, editBook, getBooks, getBook, deleteBook, updateBook,  newBook } from '../controllers/books.js';
 
 const coverImagePath = 'uploads/bookCovers';
 
 
-const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
+// const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif'];
    // uploadPath = path.join('public', Book.coverImgPath),
   
 // const __filename = fileURLToPath(import.meta.url),
@@ -45,6 +45,24 @@ router.get('/', getBooks);
 
 // new Book Route
 router.get('/new', newBook);
+
+// edit book router
+router.get('/:id/edit', editBook);
+
+
+// update book router
+router.put('/:id', updateBook);
+
+
+
+
+// show book router
+router.get('/:id', getBook);
+
+
+// delete book router
+
+router.delete('/:id', deleteBook);
 
 
 
