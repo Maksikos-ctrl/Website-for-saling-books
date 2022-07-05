@@ -1,15 +1,25 @@
 <h2 class="page-header">Search Authors</h2>
 <form action="/authors" method="GET">
-    <label>Name</label>
-    <input type="text" name="name" value="<%= searchOpts.name %>">
-    <button type="submit">Search</button>
-</form>  
+    <div class="form-row">
+        <div class="form-item">
+            <label>Name</label>
+            <input type="text" name="name" value="<%= searchOpts.name %>">
+           
+        </div>
+    </div> 
+    <div class="form-row form-row-end">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>    
+ </form>  
 <br>
 <% authors.forEach(a => { %>
-    <div><%= a.name %></div>
-    <div class="btn-row">
-        <a class="btn btn-primary" href="/authors/<%= a.id %>">View</a>
-        <a class="btn btn-primary" href="/authors/<%= a.id %>/edit">Edit</a>
-        <%- include('../partials/deleteForm.ejs', { url: `/authors/${a.id}`}) %> 
-    </div> 
+    <div class="author-row">
+        <div class="author-name"><%= a.name %></div>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/authors/<%= a.id %>">View</a>
+            <a class="btn btn-primary" href="/authors/<%= a.id %>/edit">Edit</a>
+            <%- include('../partials/deleteForm.ejs', { url: `/authors/${a.id}`}) %> 
+        </div> 
+    </div>
+   
 <% }) %>    

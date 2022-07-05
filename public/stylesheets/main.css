@@ -2,6 +2,9 @@
 @import 'shared/fonts.css';
 @import 'shared/header.css';
 @import 'shared/buttons.css';
+@import 'shared/form.css';
+@import 'shared/author.css';
+
 
 :root {
     font-family: 'Gotham Rounded';
@@ -33,3 +36,8 @@ body {
     font-size: 2rem;
     font-weight: 500;
 }
+
+.err-msg {
+    color: red;
+}
+
