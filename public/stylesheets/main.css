@@ -25,6 +25,7 @@ body {
     max-width: 1200px;
     margin: auto;
     margin-bottom: 3rem;
+    
 }
 
 
@@ -40,4 +41,12 @@ body {
 .err-msg {
     color: red;
 }
+
+/* .main-hero {
+    margin-bottom: 800px;
+}
+
+.main-img {
+    margin-bottom: 800px;
+} */
 

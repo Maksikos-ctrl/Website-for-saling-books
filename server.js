@@ -10,15 +10,35 @@ import expressLayouts from 'express-ejs-layouts';
 import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
+import nodemailer from 'nodemailer';
 
 import mainRouter from './routes/main.js';
 import authorRouter from './routes/authors.js';
-import bookRouter from './routes/books.js';
+
 
 const app = express(),
     port = 9000,
     __filename = fileURLToPath(import.meta.url),
     __dirname = path.dirname(__filename);
+
+
+// let transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//         user: "Vasya@gmail.com",
+//         pass: "qweeerty123"
+//     }
+// }),
+// mailOpts = {
+//     from: "maksikos973@gmail.com",
+//     to: "",
+//     subject: "",
+//     text: ""
+// };
+
+// transporter.sendMail(mailOpts, (err, success) => {
+//     err ? console.log(err) : console.log('The email has been sent yet');
+// });
 
 app.set('view engine', 'ejs');  // ejs is a view engine
 app.set('views', __dirname + '/views');
@@ -38,7 +58,7 @@ db.once('open', () => console.log('Connected to Mongoose'));
 
 app.use('/', mainRouter);
 app.use('/authors', authorRouter);
-app.use('/books', bookRouter);
+
 
 // authors/new
 
