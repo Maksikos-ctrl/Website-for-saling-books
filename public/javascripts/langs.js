@@ -1,4 +1,9 @@
 const langArr = {
+    "icon": {
+        "en": "My books Library!",
+        "ru": "Библиотека моих книг",
+        "sk": "Knižnica mojich kníh" 
+    },
     "intro": {
         "en": "My to introduce myself!",
         "ru": "Мой чтобы представить меня",
@@ -34,4 +39,16 @@ const langArr = {
         "ru": "Что-то пошло не так пока создавал автора",
         "sk": "Pri vytváraní autora sa niečo pokazilo" 
     },
-}
+    "header-link-1": {
+        "en": "Authors",
+        "ru": "Автора",
+        "sk": "Autora" 
+    },
+    "header-link-2": {
+        "en": "Add Authors",
+        "ru": "Добавить Авторов",
+        "sk": "Pridať autorov" 
+    },
+};
+
+export default langArr;

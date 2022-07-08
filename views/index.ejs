@@ -2,7 +2,7 @@
       
 <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         
-        <div class="main-hero flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+        <div class="lng-main-hero flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
           <h1 class="intro my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
             My
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-400">
@@ -10,7 +10,7 @@
             </span>
             to introduce myself!
           </h1>
-          <h2 class="largeText">
+          <h2 class="lng-largeText">
             The basic blog page layout is available and all using the default Tailwind CSS classes (although there are a few hardcoded style tags). If you are going to use this in your project, you will want to convert the classes into components.
           </h2>
           <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
@@ -19,21 +19,21 @@
 
           <form class="bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" action="mailto:maksikos973@gmail.com">
             <div class="mb-4">
-              <label class="greetings block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+              <label class="lng-greetings block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
                 Send me your greetings 
               </label>
               <input
                 class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 id="emailaddress"
                 type="text"
-                placeholder="your@gmail.com"
+                placeholder="your@gmail.com" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
                 
               />
             </div>
 
             <div class="flex items-center justify-between pt-4">
               <button
-                class="send bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                class="lng-send bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="submit" method="post"
               >
                 Send
