@@ -42,6 +42,15 @@ body {
     color: red;
 }
 
+@media (max-width: 564) {
+    .btn-row {
+        margin-right: 4rem;
+    }
+    .author-name {
+        margin-right: -8rem;
+    }
+}
+
 /* .main-hero {
     margin-bottom: 800px;
 }

@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML = langArr[key][hash];
             }
 
-            // if (el === undefined) {
-            //     el.innerHTML = langArr[key][en];
+            // if (typeof el === 'undefined') {
+            //     allLangs = 'en';
+            //     // el.innerHTML = langArr[key][en];
             // }
         }
     };

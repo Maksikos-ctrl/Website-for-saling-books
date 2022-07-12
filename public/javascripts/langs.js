@@ -19,26 +19,7 @@ const langArr = {
         "ru": "Отправить",
         "sk": "Odoslať" 
     },
-    "name": {
-        "en": "Name",
-        "ru": "Имя",
-        "sk": "Meno" 
-    },
-    "page-header": {
-        "en": "Search Books",
-        "ru": "Поиск Книг",
-        "sk": "Vyhľadávanie kníh" 
-    },
-    "edit": {
-        "en": "Edit Author of the book",
-        "ru": "Отредактировать автора книги",
-        "sk": "Upraviť autora knihy" 
-    },
-    "err-msg": {
-        "en": "Smth went wrong while u were creating author",
-        "ru": "Что-то пошло не так пока создавал автора",
-        "sk": "Pri vytváraní autora sa niečo pokazilo" 
-    },
+        
     "header-link-1": {
         "en": "Authors",
         "ru": "Автора",
