@@ -1,6 +1,6 @@
 
 
-# Book-Directory on Node js, Express js, REST API, MongoDb and Mongoose
+# App created with using  Node js(Express js), REST API,Tailwind css, MongoDb and Mongoose
 
 
 # Getting Started with MyApp
